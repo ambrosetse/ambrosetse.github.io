@@ -1,29 +1,1146 @@
-<html>
-  <head>
-    <title>Blockly PoC</title>
-    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-  </head>
-  <body>
-  <div class="demo">
-    <p>PoC of Blockly library on free Web Hosting solution</p>
-    <div id="blocklyDiv" style="height: 480px; width: 800px;"></div>
-  </div>
-  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-    <block type="controls_if"></block>
-    <block type="logic_compare"></block>
-    <block type="controls_repeat_ext"></block>
-    <block type="math_number">
-      <field name="NUM">123</field>
-    </block>
-    <block type="math_arithmetic"></block>
-    <block type="text"></block>
-    <block type="text_print"></block>
-  </xml>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>852 IT Consultant – Corporate AI Enablement</title>
+  <meta name="description" content="852 IT Consultant bridges enterprise operations and cutting-edge AI — delivering smart, secure solutions that fit the way your teams already work.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <script>
-    var demoWorkspace = Blockly.inject('blocklyDiv',
-        {media: 'https://unpkg.com/blockly/media/',
-         toolbox: document.getElementById('toolbox')});
-  </script>
-  </body>
+    :root {
+      --navy-900: #0A1628;
+      --navy-800: #0D1B2A;
+      --navy-700: #152235;
+      --navy-600: #1E3148;
+      --navy-400: #253D56;
+      --amber:    #F5A623;
+      --amber-lt: #FBBF5A;
+      --slate:    #8AA4BE;
+      --slate-dk: #4A6080;
+      --white:    #FFFFFF;
+      --off-white:#F8F9FB;
+      --text-dk:  #1A2B3C;
+      --text-mid: #4A5568;
+      --border:   #E8EDF2;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', Arial, sans-serif;
+      color: var(--text-dk);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ──────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy-900);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      height: 68px;
+      border-bottom: 1px solid var(--navy-400);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 42px;
+      height: 42px;
+      background: var(--amber);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy-900);
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    .nav-logo-text small {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--slate-dk);
+      letter-spacing: 0.14em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--slate);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--amber) !important;
+      color: var(--navy-900) !important;
+      padding: 9px 22px;
+      border-radius: 7px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--amber-lt) !important; }
+
+    /* ── HERO ──────────────────────────────────── */
+    .hero {
+      background: var(--navy-900);
+      min-height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 6%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 580px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,166,35,0.12);
+      border: 1px solid rgba(245,166,35,0.28);
+      color: var(--amber);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--amber);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(38px, 5vw, 64px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.13;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amber);
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--slate);
+      line-height: 1.75;
+      margin-bottom: 44px;
+      max-width: 460px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: var(--navy-900);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.22);
+      font-weight: 500;
+      font-size: 15px;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* Hero decorative fingerprint */
+    .hero-deco {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(420px, 42vw);
+      height: min(420px, 42vw);
+      opacity: 0.22;
+      pointer-events: none;
+    }
+
+    /* ── STATS BAR ─────────────────────────────── */
+    .stats-bar {
+      background: var(--navy-800);
+      border-top: 1px solid var(--navy-400);
+      border-bottom: 1px solid var(--navy-400);
+      padding: 28px 6%;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .stat-item {
+      flex: 1;
+      max-width: 200px;
+      text-align: center;
+      padding: 0 24px;
+      border-right: 1px solid var(--navy-400);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-value {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--amber);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--slate-dk);
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
+
+    /* ── SECTIONS COMMON ───────────────────────── */
+    section {
+      padding: 96px 6%;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700;
+      color: var(--navy-900);
+      line-height: 1.18;
+      margin-bottom: 18px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--text-mid);
+      max-width: 560px;
+      line-height: 1.72;
+    }
+
+    .light .section-title, .section-title.light { color: var(--white); }
+    .light .section-sub,   .section-sub.light   { color: var(--slate); }
+
+    /* ── MISSION ───────────────────────────────── */
+    .mission { background: var(--off-white); }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin-top: 56px;
+    }
+
+    .mission-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 36px 32px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .mission-card:hover {
+      box-shadow: 0 8px 32px rgba(10,22,40,0.09);
+      transform: translateY(-2px);
+    }
+
+    .mission-icon {
+      width: 48px; height: 48px;
+      background: rgba(245,166,35,0.1);
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .mission-icon svg { width: 22px; height: 22px; }
+
+    .mission-card h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin-bottom: 12px;
+    }
+
+    .mission-card p {
+      font-size: 14.5px;
+      color: var(--text-mid);
+      line-height: 1.68;
+    }
+
+    /* ── EMATCH PRODUCT ────────────────────────── */
+    .ematch { background: var(--white); }
+
+    .ematch-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+      margin-top: 60px;
+    }
+
+    .ematch-card {
+      background: var(--navy-900);
+      border-radius: 24px;
+      padding: 44px 40px 36px;
+      position: sticky;
+      top: 88px;
+    }
+
+    .ematch-wordmark {
+      margin-bottom: 8px;
+    }
+
+    .ematch-sub {
+      font-size: 11px;
+      color: var(--slate-dk);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .ematch-divider {
+      border: none;
+      border-top: 1px solid var(--navy-400);
+      margin-bottom: 24px;
+    }
+
+    .ematch-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .ematch-stat {
+      background: var(--navy-700);
+      border-radius: 10px;
+      padding: 16px 14px;
+      text-align: center;
+    }
+
+    .ematch-stat strong {
+      display: block;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 20px;
+      color: var(--amber);
+      line-height: 1.2;
+    }
+
+    .ematch-stat span {
+      font-size: 10.5px;
+      color: var(--slate-dk);
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+      display: block;
+    }
+
+    .ematch-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .ematch-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .feat-check {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      margin-top: 1px;
+      background: rgba(245,166,35,0.1);
+      border: 1.5px solid rgba(245,166,35,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .feat-check svg { width: 11px; height: 11px; }
+
+    .ematch-features li strong { color: var(--navy-900); }
+
+    .ematch-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--amber);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: 36px;
+      transition: gap 0.2s;
+    }
+
+    .ematch-cta:hover { gap: 12px; }
+
+    /* ── TIERS ─────────────────────────────────── */
+    .tiers { background: var(--off-white); }
+
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+      align-items: start;
+    }
+
+    .tier-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 36px 28px;
+    }
+
+    .tier-card.featured {
+      background: var(--navy-900);
+      border-color: var(--navy-400);
+      transform: scale(1.03);
+    }
+
+    .tier-pill {
+      display: inline-block;
+      background: rgba(245,166,35,0.12);
+      color: var(--amber);
+      border: 1px solid rgba(245,166,35,0.28);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .tier-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin-bottom: 8px;
+    }
+
+    .tier-card.featured .tier-name { color: var(--white); }
+
+    .tier-desc {
+      font-size: 14px;
+      color: var(--text-mid);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .tier-card.featured .tier-desc { color: var(--slate); }
+
+    .tier-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tier-list li {
+      font-size: 14px;
+      color: var(--text-mid);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tier-card.featured .tier-list li { color: var(--slate); }
+
+    .tick { flex-shrink: 0; color: var(--amber); }
+
+    /* ── TEAM ──────────────────────────────────── */
+    .team { background: var(--white); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .team-card {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px;
+      transition: box-shadow 0.2s;
+    }
+
+    .team-card:hover { box-shadow: 0 8px 32px rgba(10,22,40,0.09); }
+
+    .team-avatar {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      margin-bottom: 20px;
+      border: 3px solid rgba(245,166,35,0.35);
+      display: block;
+    }
+
+    .team-role {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 6px;
+    }
+
+    .team-card h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin-bottom: 18px;
+    }
+
+    .team-creds {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .team-creds li {
+      font-size: 14px;
+      color: var(--text-mid);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .team-creds li::before {
+      content: '—';
+      color: var(--amber);
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    .cert-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 26px;
+    }
+
+    .chip {
+      background: rgba(245,166,35,0.08);
+      border: 1px solid rgba(245,166,35,0.22);
+      color: var(--slate-dk);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .linkedin-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--slate-dk);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .linkedin-link:hover { color: var(--amber); }
+
+    /* ── CONTACT CTA ───────────────────────────── */
+    .contact-cta {
+      background: var(--navy-900);
+      text-align: center;
+      padding: 100px 6%;
+    }
+
+    .contact-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-inner p {
+      font-size: 17px;
+      color: var(--slate);
+      margin: 18px 0 44px;
+      line-height: 1.75;
+    }
+
+    .contact-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ────────────────────────────────── */
+    footer {
+      background: var(--navy-800);
+      padding: 28px 6%;
+      border-top: 1px solid var(--navy-400);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-mark {
+      width: 36px; height: 36px;
+      background: var(--amber);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .footer-copy { font-size: 13px; color: var(--slate-dk); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--slate-dk);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--slate); }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 900px) {
+      .ematch-layout { grid-template-columns: 1fr; gap: 40px; }
+      .ematch-card { position: static; }
+      .tiers-grid { grid-template-columns: 1fr; }
+      .tier-card.featured { transform: none; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-deco { display: none; }
+      nav { padding: 0 5%; }
+      .nav-links { gap: 20px; }
+      section { padding: 64px 5%; }
+      .stats-bar { flex-wrap: wrap; gap: 16px; padding: 24px 5%; }
+      .stat-item { border-right: none; min-width: 120px; }
+      footer { padding: 24px 5%; flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-outline { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-logo" href="#home">
+    <div class="nav-logo-mark">852</div>
+    <div class="nav-logo-text">
+      IT Consultant
+      <small>Hong Kong · AI Solutions</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#mission">Services</a></li>
+    <li><a href="#ematch">Products</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="https://opnform.com/forms/client-inquiry-service-request-form-zqhnap" class="nav-cta" target="_blank" rel="noopener">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">Corporate AI Enablement</div>
+    <h1>Integrate <em>AI</em> into<br>your business</h1>
+    <p>We bridge enterprise operations and cutting-edge AI — delivering smart, secure solutions that fit the way your teams already work.</p>
+    <div class="hero-actions">
+      <a href="#ematch" class="btn-primary">Explore eMatch</a>
+      <a href="https://opnform.com/forms/client-inquiry-service-request-form-zqhnap" class="btn-outline" target="_blank" rel="noopener">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- Fingerprint mark echoing the eMatch brand -->
+  <div class="hero-deco" aria-hidden="true">
+    <svg viewBox="-80 40 240 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <g transform="translate(40,118)">
+        <line x1="0" y1="-74" x2="0" y2="74" stroke="#8AA4BE" stroke-width="0.7"/>
+        <path d="M0,-9  A9,9,0,0,0,0,9"   fill="none" stroke="#F5A623" stroke-width="4.5"  stroke-linecap="round"/>
+        <path d="M0,-16 A16,16,0,0,0,0,16" fill="none" stroke="#F5A623" stroke-width="4"    stroke-linecap="round"/>
+        <path d="M0,-23 A23,23,0,0,0,0,23" fill="none" stroke="#F5A623" stroke-width="3.6"  stroke-linecap="round"/>
+        <path d="M0,-31 A31,31,0,0,0,0,31" fill="none" stroke="#F5A623" stroke-width="3.2"  stroke-linecap="round"/>
+        <path d="M0,-40 A40,40,0,0,0,0,40" fill="none" stroke="#F5A623" stroke-width="2.8"  stroke-linecap="round"/>
+        <path d="M0,-50 A50,50,0,0,0,0,50" fill="none" stroke="#F5A623" stroke-width="2.4"  stroke-linecap="round"/>
+        <path d="M0,-62 A62,62,0,0,0,0,62" fill="none" stroke="#F5A623" stroke-width="2"    stroke-linecap="round"/>
+        <path d="M0,-9  A9,9,0,0,1,0,9"   fill="none" stroke="#8AA4BE" stroke-width="4.5"  stroke-linecap="round"/>
+        <path d="M0,-16 A16,16,0,0,1,0,16" fill="none" stroke="#8AA4BE" stroke-width="4"    stroke-linecap="round"/>
+        <path d="M0,-23 A23,23,0,0,1,0,23" fill="none" stroke="#8AA4BE" stroke-width="3.6"  stroke-linecap="round"/>
+        <path d="M0,-31 A31,31,0,0,1,0,31" fill="none" stroke="#8AA4BE" stroke-width="3.2"  stroke-linecap="round"/>
+        <path d="M0,-40 A40,40,0,0,1,0,40" fill="none" stroke="#8AA4BE" stroke-width="2.8"  stroke-linecap="round"/>
+        <path d="M0,-50 A50,50,0,0,1,0,50" fill="none" stroke="#8AA4BE" stroke-width="2.4"  stroke-linecap="round"/>
+        <path d="M0,-62 A62,62,0,0,1,0,62" fill="none" stroke="#8AA4BE" stroke-width="2"    stroke-linecap="round"/>
+        <circle r="6.5" fill="#F5A623"/>
+        <circle r="2.8" fill="#0A1628"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ─── STATS BAR ─────────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-value">48,200+</div>
+    <div class="stat-label">Active Jobs on eMatch</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">12,800+</div>
+    <div class="stat-label">Companies Registered</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">93%</div>
+    <div class="stat-label">AI Match Accuracy</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">45+</div>
+    <div class="stat-label">Combined Years Experience</div>
+  </div>
+</div>
+
+<!-- ─── MISSION ───────────────────────────────────────────────── -->
+<section class="mission" id="mission">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title">Enterprise-grade AI,<br>delivered pragmatically</h2>
+  <p class="section-sub">We don't sell AI hype — we build integrations that slot into your existing systems and deliver measurable value from day one.</p>
+  <div class="mission-grid">
+    <div class="mission-card">
+      <div class="mission-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 2v3m0 14v3M4.22 4.22l2.12 2.12m11.32 11.32l2.12 2.12M2 12h3m14 0h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+        </svg>
+      </div>
+      <h3>AI Workflow Integration</h3>
+      <p>Connect state-of-the-art language models and AI pipelines directly into the tools and processes your team uses daily — no rip-and-replace required.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <h3>Secure by Design</h3>
+      <p>Every solution we ship is hardened from day one — AES-256 encryption at rest, zero-trust networking, and role-based access control are standard, not extras.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <h3>Proven Delivery Track Record</h3>
+      <p>Our founders bring 45+ combined years of delivery experience in banking, international payments, and cloud infrastructure across Azure, AWS, and GCP.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EMATCH PRODUCT ─────────────────────────────────────────── -->
+<section class="ematch" id="ematch">
+  <div class="section-label">Featured Product</div>
+  <h2 class="section-title">eMatch — AI Job Matching Platform</h2>
+  <p class="section-sub">A full-stack, white-label HR platform powered by AI fingerprinting — matching candidates with opportunities without storing sensitive resume files.</p>
+
+  <div class="ematch-layout">
+
+    <!-- Left: branded card -->
+    <div class="ematch-card">
+      <div class="ematch-wordmark">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" width="220" style="display:block;">
+          <text x="0" y="58" font-family="'Playfair Display',Georgia,serif" font-size="64" font-weight="700" fill="#F5A623">e</text>
+          <text x="42" y="58" font-family="'Playfair Display',Georgia,serif" font-size="64" font-weight="700" fill="#FFFFFF">Match</text>
+        </svg>
+      </div>
+      <div class="ematch-sub">AI Job Matching Platform</div>
+      <hr class="ematch-divider">
+      <div class="ematch-stats">
+        <div class="ematch-stat">
+          <strong>93%</strong>
+          <span>Match Accuracy</span>
+        </div>
+        <div class="ematch-stat">
+          <strong>3</strong>
+          <span>User Portals</span>
+        </div>
+        <div class="ematch-stat">
+          <strong>AES-256</strong>
+          <span>Encryption at Rest</span>
+        </div>
+        <div class="ematch-stat">
+          <strong>SaaS</strong>
+          <span>White-label Ready</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: feature list -->
+    <div>
+      <ul class="ematch-features">
+        <li>
+          <span class="feat-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span><strong>Privacy-preserving Resume Fingerprinting</strong> — stores attribute signatures, never raw files; inspired by biometric fingerprint recognition to protect candidate privacy</span>
+        </li>
+        <li>
+          <span class="feat-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span><strong>AI-powered candidate matching</strong> — runs on Claude (Anthropic) or local Ollama for on-premise deployments, with configurable match thresholds</span>
+        </li>
+        <li>
+          <span class="feat-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span><strong>Three-sided marketplace</strong> — dedicated portals for Candidates, Employers, and Placement Agents with role-based feature sets</span>
+        </li>
+        <li>
+          <span class="feat-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span><strong>Auto Job Apply</strong> — full-auto or manual-approval modes; AI selects the highest-scoring resume from your collection for each application</span>
+        </li>
+        <li>
+          <span class="feat-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span><strong>AI Chatbot with agent escalation</strong> — 24×7 consultation; chatbot hands off complex queries to human agents with a pre-filled survey and email notification</span>
+        </li>
+        <li>
+          <span class="feat-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span><strong>Request For Application (RFA)</strong> — AI-driven outbound recruitment with daily invite throttling and customisable invite templates</span>
+        </li>
+        <li>
+          <span class="feat-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span><strong>White-label ready</strong> — custom branding for enterprise clients or reseller deployments; full theming support</span>
+        </li>
+        <li>
+          <span class="feat-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span><strong>Integrated payment gateway &amp; subscriptions</strong> — Free, Plus, and Pro tiers with built-in billing and license key management</span>
+        </li>
+      </ul>
+
+      <a href="https://opnform.com/forms/client-inquiry-service-request-form-zqhnap" class="ematch-cta" target="_blank" rel="noopener">
+        Request a demo
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SUBSCRIPTION TIERS ────────────────────────────────────── -->
+<section class="tiers" id="tiers">
+  <div class="section-label">eMatch Subscriptions</div>
+  <h2 class="section-title">Plans for every stage</h2>
+  <p class="section-sub">Whether you're a first-time job seeker or a large recruitment agency, eMatch scales with your needs.</p>
+  <div class="tiers-grid">
+
+    <div class="tier-card">
+      <div class="tier-pill">Free</div>
+      <div class="tier-name">Starter</div>
+      <div class="tier-desc">Core job discovery and apply tools to get you started.</div>
+      <ul class="tier-list">
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Job search &amp; bookmark
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Application tracking
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Candidate profile management
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Direct messaging with employers
+        </li>
+      </ul>
+    </div>
+
+    <div class="tier-card featured">
+      <div class="tier-pill">Plus</div>
+      <div class="tier-name">Professional</div>
+      <div class="tier-desc">AI features unlocked for serious job seekers.</div>
+      <ul class="tier-list">
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Everything in Starter
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          AI resume rewriting
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          AI match scoring per job
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Manual-approval auto-apply
+        </li>
+      </ul>
+    </div>
+
+    <div class="tier-card">
+      <div class="tier-pill">Pro</div>
+      <div class="tier-name">Elite</div>
+      <div class="tier-desc">Full automation for power users and agencies.</div>
+      <ul class="tier-list">
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Everything in Professional
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Full-auto scheduled job apply
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Priority AI chatbot &amp; agent support
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3 3 7-7" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Advanced analytics &amp; reports
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── TEAM ───────────────────────────────────────────────────── -->
+<section class="team" id="team">
+  <div class="section-label">Our Team</div>
+  <h2 class="section-title">Built by practitioners,<br>not theorists</h2>
+  <p class="section-sub">Our founders bring decades of real-world delivery across banking, payments, and cloud infrastructure.</p>
+  <div class="team-grid">
+
+    <div class="team-card">
+      <img class="team-avatar" src="img/joel.jpg" alt="Joel Pang">
+      <div class="team-role">Founder · Product &amp; Operations</div>
+      <h3>Joel Pang</h3>
+      <ul class="team-creds">
+        <li>25+ years of IT experience</li>
+        <li>20+ years of international project implementation</li>
+        <li>20 years of payment integration experience</li>
+        <li>Certified Java programmer</li>
+      </ul>
+      <div class="cert-chips">
+        <span class="chip">PMP</span>
+        <span class="chip">CSM</span>
+        <span class="chip">CSPO</span>
+        <span class="chip">SAFe POPM</span>
+        <span class="chip">Lean Six Sigma</span>
+      </div>
+      <a href="https://www.linkedin.com/in/joelpcy/" class="linkedin-link" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452H17.12v-5.569c0-1.327-.024-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.805V9h3.197v1.561h.046c.445-.842 1.531-1.731 3.15-1.731 3.368 0 3.99 2.217 3.99 5.099v6.523zM5.337 7.433a1.857 1.857 0 1 1 0-3.714 1.857 1.857 0 0 1 0 3.714zM6.999 20.452H3.672V9h3.327v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        View LinkedIn profile
+      </a>
+    </div>
+
+    <div class="team-card">
+      <img class="team-avatar" src="img/ambrose.jpg" alt="Ambrose Tse">
+      <div class="team-role">Co-Founder · System Architect</div>
+      <h3>Ambrose Tse</h3>
+      <ul class="team-creds">
+        <li>20+ years of IT experience</li>
+        <li>System Architect at Bank of East Asia (Hong Kong)</li>
+        <li>Full-stack engineer: Java, Python, GoLang, TypeScript</li>
+        <li>15+ years cloud &amp; infrastructure (Azure, AWS, GCP)</li>
+        <li>AI infrastructure: Ollama, AnythingLLM, TensorFlow</li>
+      </ul>
+      <div class="cert-chips">
+        <span class="chip">Best FinTech Grand Award 2016</span>
+        <span class="chip">Innovation &amp; Creativity Grand Award 2012</span>
+      </div>
+      <a href="https://www.linkedin.com/in/kam-lung-tse-b6120955/" class="linkedin-link" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452H17.12v-5.569c0-1.327-.024-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.805V9h3.197v1.561h.046c.445-.842 1.531-1.731 3.15-1.731 3.368 0 3.99 2.217 3.99 5.099v6.523zM5.337 7.433a1.857 1.857 0 1 1 0-3.714 1.857 1.857 0 0 1 0 3.714zM6.999 20.452H3.672V9h3.327v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        View LinkedIn profile
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── CONTACT CTA ────────────────────────────────────────────── -->
+<section class="contact-cta" id="contact">
+  <div class="contact-inner">
+    <div class="section-label">Get Started</div>
+    <h2 class="section-title light">Ready to enable AI<br>in your enterprise?</h2>
+    <p>Tell us about your workflow challenges. We'll respond within 24 hours with a tailored solution brief — no commitment required.</p>
+    <div class="contact-btns">
+      <a href="https://opnform.com/forms/client-inquiry-service-request-form-zqhnap" class="btn-primary" target="_blank" rel="noopener">Send Enquiry</a>
+      <a href="https://calendly.com/sales-852itconsultant/30min" class="btn-outline" target="_blank" rel="noopener">Book a 30-min Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-mark">852</div>
+    <span class="footer-copy">© 2025 852 IT Consultant. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/company/852-it-consultant/?viewAsMember=true" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://opnform.com/forms/client-inquiry-service-request-form-zqhnap" target="_blank" rel="noopener">Contact</a>
+    <a href="https://tinyurl.com/eMatchSalesEnquiry" target="_blank" rel="noopener">eMatch Sales</a>
+  </div>
+</footer>
+
+</body>
 </html>
